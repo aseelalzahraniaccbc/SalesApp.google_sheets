@@ -580,7 +580,7 @@
             return div.innerHTML;
         }
 
-        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwzo1mnvX2cy6sZ5A74BnO6Kzjs_pPKXEZzPBH8iSTAUnAEn5XPeZl0IDPfvBTTcI2D/exec'  // ← Paste your Azure Function URL here;
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx4KfrY04iIu_GAsfC1hG2TSWieOifr_K8LNfGk5q5Yn2j2AYPhzW4-dI7IBB7SJ5wU/exec';
 
         // Load users data
         async function loadData() {
@@ -591,8 +591,7 @@
                 }catch(e){console.error('Apps Script error:',e);}
             }
             try {
-                const usersResponse = await fetch('users_data.json');
-                usersData = await usersResponse.json();
+                throw 'skip'; // JSON fallback disabled — using Apps Script
             } catch (error) {
                 console.error('Error loading data:', error);
                 usersData = [

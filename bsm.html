@@ -156,7 +156,7 @@
 </div>
 
 <script>
-const APPS_SCRIPT_URL = https://script.google.com/macros/s/AKfycbwzo1mnvX2cy6sZ5A74BnO6Kzjs_pPKXEZzPBH8iSTAUnAEn5XPeZl0IDPfvBTTcI2D/exec''  // ← Paste your Azure Function URL here;
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx4KfrY04iIu_GAsfC1hG2TSWieOifr_K8LNfGk5q5Yn2j2AYPhzW4-dI7IBB7SJ5wU/exec';
 
 let usersData=[],salesmenData=[],supData=[],bsmData=[],masterData=[];
 let currentUser=null,mySupervisors=[],mySalesmen=[],myMasterData=[];
@@ -181,9 +181,9 @@ async function loadFromAppsScript(userCode){
 
 async function loadData(){
     try{
-        const[u,sm,sp,bs,md]=await Promise.all([fetch('users_data.json'),fetch('salesman_sales.json'),fetch('sup_sales.json'),fetch('bsm_sales.json'),fetch('master_data.json')]);
-        usersData=await u.json();salesmenData=await sm.json();supData=await sp.json();bsmData=await bs.json();masterData=await md.json();
-    }catch(e){console.error(e);
+        /* JSON fallback disabled — using Apps Script */
+        throw 'skip';
+    }catch(e){
         usersData=[{"userCode":75241,"userName":"Aseel","role":"Salesman"},{"userCode":75242,"userName":"Ali","role":"Salesman"},{"userCode":75243,"userName":"Ahmed","role":"Salesman"},{"userCode":75244,"userName":"Amer","role":"Salesman"},{"userCode":75245,"userName":"Amjad","role":"Salesman"},{"userCode":12345,"userName":"Admin","role":"Management"},{"userCode":123456,"userName":"SUP","role":"Supervisor"},{"userCode":3001,"userName":"BSM","role":"BSM"}];
         salesmenData=[{"salesmanCode":75241,"salesman":"Aseel","routeCode":1,"assignedSUP":123456,"tgt":3000,"actCY":2700,"pctTgt":90},{"salesmanCode":75242,"salesman":"Ali","routeCode":2,"assignedSUP":123456,"tgt":3200,"actCY":3000,"pctTgt":93.75},{"salesmanCode":75243,"salesman":"Ahmed","routeCode":3,"assignedSUP":123456,"tgt":3100,"actCY":2800,"pctTgt":90.32},{"salesmanCode":75244,"salesman":"Amer","routeCode":4,"assignedSUP":123456,"tgt":3500,"actCY":2700,"pctTgt":77.14},{"salesmanCode":75245,"salesman":"Amjad","routeCode":5,"assignedSUP":123456,"tgt":3300,"actCY":2900,"pctTgt":87.88}];
         supData=[{"supervisorCode":123456,"supervisor":"SUP","routeCode":1,"assignedBSM":3001,"tgt":3000,"actCY":2700,"pctTgt":90},{"supervisorCode":123456,"supervisor":"SUP","routeCode":2,"assignedBSM":3001,"tgt":3200,"actCY":3000,"pctTgt":94},{"supervisorCode":123456,"supervisor":"SUP","routeCode":3,"assignedBSM":3001,"tgt":3100,"actCY":2800,"pctTgt":90},{"supervisorCode":123456,"supervisor":"SUP","routeCode":4,"assignedBSM":3001,"tgt":3500,"actCY":2700,"pctTgt":77},{"supervisorCode":123456,"supervisor":"SUP","routeCode":5,"assignedBSM":3001,"tgt":3300,"actCY":2900,"pctTgt":88}];
